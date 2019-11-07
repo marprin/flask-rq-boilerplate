@@ -1,0 +1,32 @@
+# A simple framework for building complex web application
+Flask==1.0.2
+
+# Distributed Task Queue
+celery==4.3.0
+
+# Python client for Redis key-value store
+redis==3.2.1
+
+# Messaging library for Python.
+kombu==4.5.0
+
+# A lightweight library for converting complex datatypes to and from native python datatypes
+marshmallow==2.16.3
+
+# Add .env support to your django/flask app in development and deployments
+python-dotenv==0.9.1
+
+# A python library adding a json log formatter
+python-json-logger==0.1.9
+
+# Python HTTP for Humans
+requests==2.20.0
+
+# pyscopg2 - Python-PostgreSQL Database Adapter
+psycopg2==2.7.5
+
+# python code static checker
+pylint==2.1.1
+
+# Celery Flower
+flower==0.9.2
