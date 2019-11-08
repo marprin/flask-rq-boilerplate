@@ -10,7 +10,7 @@ A. Setup using virtual environment
 3. Activate the virtualenv
    `. venv/bin/activate`
 4. Install the requirements
-   `pip3 install -r requirements/local.txt`
+   `pip3 install -r requirements.txt`
 5. Run the server
    `./runserver`
    The app will run on port 5000
@@ -22,7 +22,7 @@ Just run
 $ docker-compose up
 ```
 
-And the application will run on port 9300 for http, 9400 for flower (background task monitoring)
+And the application will run on port 9300 for http
 
 
 Running Test

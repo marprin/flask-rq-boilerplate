@@ -1,4 +1,4 @@
-FROM python:3.6-alpine
+FROM python:3.7-alpine
 
 ENV PYTHONUNBUFFERED 1
 ENV C_FORCE_ROOT true
@@ -12,10 +12,10 @@ RUN apk add --virtual build-deps postgresql-dev gcc musl-dev --update-cache --no
 
 WORKDIR /app
 
-COPY ./requirements /requirements
+COPY ./requirements.txt requirements.txt
 
-RUN pip install pip --upgrade && pip install -r /requirements/prod.txt --no-cache-dir
+RUN pip install pip --upgrade && pip install -r requirements.txt --no-cache-dir
 
 ADD . /app
 
-CMD gunicorn -b 0.0.0.0:9300 -t 30 --graceful-timeout 60 wsgi:app -p /tmp/gunicorn.pid
+CMD gunicorn -b 0.0.0.0:9300 -t 30 --graceful-timeout 60 app:app -p /tmp/gunicorn.pid

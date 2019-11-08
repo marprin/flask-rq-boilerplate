@@ -9,32 +9,28 @@ BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
 APP_KEY = os.getenv('APP_KEY')
 SECRET_KEY = os.getenv('SECRET_KEY')
-
 TOKEN_EXPIRY = int(os.getenv('TOKEN_EXPIRY'))
-REDIS_HOST = os.getenv('REDIS_HOST')
-REDIS_PORT = os.getenv('REDIS_PORT')
 
 TIMEZONE = 'UTC'
 
-CELERY_BROKER_URL = 'redis://{}:{}/0'.format(REDIS_HOST, REDIS_PORT)
-CELERY_RESULT_BACKEND = 'redis://{}:{}/1'.format(REDIS_HOST, REDIS_PORT)
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
-CELERY_ACCEPT_CONTENT = ['json']
-CELERY_TIMEZONE = 'UTC'
-CELERY_ENABLE_UTC = True
+STATSD_HOST = os.environ.get("STATSD_HOST", "localhost")
+STATSD_PORT = os.environ.get("STATSD_PORT", 8125)
+STATSD_PREFIX = os.environ.get("STATSD_PREFIX", "flask.rq")
 
-from celery.schedules import crontab
-CELERYBEAT_SCHEDULE = {
-    'add': {
-        'task': 'tasks.add',
-        'schedule': crontab(hour='*/1', minute=28)
-    },
-    'add-2': {
-        'task': 'scheduled_tasks.add_2',
-        'schedule': crontab(hour='*/1', minute=28)
-    }
-}
+DB_USER = os.environ.get("DB_USER")
+DB_PASSWORD = os.environ.get("DB_PASSWORD")
+DB_PORT = os.environ.get("DB_PORT", 3306)
+DB_HOST = os.environ.get("DB_HOST", "localhost")
+DB_NAME = os.environ.get("DB_NAME", "flask_rq")
+
+REDIS_HOST = os.environ.get("REDIS_HOST", "localhost")
+REDIS_PORT = os.environ.get("REDIS_PORT", 6379)
+REDIS_DB = os.environ.get("REDIS_DB", 0)
+REDIS_PASSWORD = os.environ.get("REDIS_PASSWORD")
+
+RQ_DASHBOARD_REDIS_URL = f"redis:{REDIS_PASSWORD}//{REDIS_HOST}:{REDIS_PORT}/{REDIS_DB}"
+RQ_DASHBOARD_USERNAME = os.environ.get("RQ_DASHBOARD_USERNAME")
+RQ_DASHBOARD_PASSWORD = os.environ.get("RQ_DASHBOARD_PASSWORD")
 
 
 LOGGING_CONFIG = {

@@ -1,9 +1,11 @@
-from flask import Flask
-from werkzeug.contrib.cache import RedisCache
-from app.auth.views import auth
-import settings
 import logging.config
+import settings
+from flask import Flask, jsonify
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
+from werkzeug.contrib.cache import RedisCache
 from werkzeug.utils import import_string
+from app.route import register_route_blueprint
 
 
 def create_app():
@@ -12,9 +14,22 @@ def create_app():
 
     app.config.from_object(settings)
 
-    app.cache = RedisCache(host=settings.REDIS_HOST, port=settings.REDIS_PORT)
+    app.cache = RedisCache(host=settings.REDIS_HOST, port=settings.REDIS_PORT, db=settings.REDIS_DB, password=settings.REDIS_PASSWORD)
 
-    # Register blueprint here
-    app.register_blueprint(auth)
+    limiter = Limiter(
+        app,
+        key_func=get_remote_address,
+        default_limits=["50 per minute"]
+    )
+
+    register_route_blueprint(app)
 
     return app
+
+app = create_app()
+
+@app.route('/health')
+def health_check():
+    return jsonify({
+        'status': 'ok'
+    }), 200
