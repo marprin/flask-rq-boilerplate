@@ -5,7 +5,7 @@ from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from werkzeug.contrib.cache import RedisCache
 from werkzeug.utils import import_string
-from app.route.route import register_route_blueprint
+from route.route import register_route_blueprint
 
 
 def create_app():

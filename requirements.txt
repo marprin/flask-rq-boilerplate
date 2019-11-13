@@ -20,4 +20,5 @@ redis==3.3.10
 requests==2.22.0
 rq==1.1.0
 rq-dashboard==0.5.3
+setproctitle==1.1.10
 statsd==3.3.0
