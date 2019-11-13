@@ -7,11 +7,11 @@ import os
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
-APP_KEY = os.getenv('APP_KEY')
-SECRET_KEY = os.getenv('SECRET_KEY')
-TOKEN_EXPIRY = int(os.getenv('TOKEN_EXPIRY'))
+APP_KEY = os.getenv("APP_KEY")
+SECRET_KEY = os.getenv("SECRET_KEY")
+TOKEN_EXPIRY = int(os.getenv("TOKEN_EXPIRY"))
 
-TIMEZONE = 'UTC'
+TIMEZONE = "UTC"
 
 STATSD_HOST = os.environ.get("STATSD_HOST", "localhost")
 STATSD_PORT = os.environ.get("STATSD_PORT", 8125)
@@ -43,21 +43,21 @@ LOGGING_CONFIG = {
         "json_formatter": {
             "class": "pythonjsonlogger.jsonlogger.JsonFormatter",
             "format": "%(asctime)s %(process)d %(threadName)s "
-                    "%(name)s %(levelname)s %(pathname)s %(lineno)s %(message)s",
-            "datefmt": "%Y-%m-%dT%H:%M:%S%z"
-        }
+            "%(name)s %(levelname)s %(pathname)s %(lineno)s %(message)s",
+            "datefmt": "%Y-%m-%dT%H:%M:%S%z",
+        },
     },
     "handlers": {
         "wsgi": {
             "class": "logging.StreamHandler",
             "stream": "ext://flask.logging.wsgi_errors_stream",
-            'formatter': 'default'
+            "formatter": "default",
         },
-        'console': {
-            'class': 'logging.StreamHandler',
-            'level': 'ERROR',
-            'formatter': 'json_formatter',
-            'stream': 'ext://sys.stdout'
+        "console": {
+            "class": "logging.StreamHandler",
+            "level": "ERROR",
+            "formatter": "json_formatter",
+            "stream": "ext://sys.stdout",
         },
         "file_handler": {
             "class": "logging.handlers.RotatingFileHandler",
@@ -66,19 +66,15 @@ LOGGING_CONFIG = {
             "filename": "logs/debug.log",
             "maxBytes": 10485760,
             "backupCount": 5,
-            "encoding": "utf8"
-        }
+            "encoding": "utf8",
+        },
     },
     "loggers": {
         "flask.app": {
-            'level': 'DEBUG',
-            'propagate': False,
-            "handlers": ['file_handler', 'wsgi', 'console']
+            "level": "DEBUG",
+            "propagate": False,
+            "handlers": ["file_handler", "wsgi", "console"],
         }
     },
-    "root": {
-        "level": "ERROR",
-        "handlers": ['wsgi', 'console'],
-        'propagate': False,
-    }
+    "root": {"level": "ERROR", "handlers": ["wsgi", "console"], "propagate": False},
 }
