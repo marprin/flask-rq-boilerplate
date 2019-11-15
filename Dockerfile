@@ -15,7 +15,3 @@ WORKDIR /app
 COPY ./requirements.txt requirements.txt
 
 RUN pip install pip --upgrade && pip install -r requirements.txt --no-cache-dir
-
-ADD . /app
-
-CMD gunicorn -b 0.0.0.0:9300 -t 30 --graceful-timeout 60 app:app -p /tmp/gunicorn.pid
