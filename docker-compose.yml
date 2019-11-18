@@ -13,6 +13,7 @@ services:
     volumes:
       - .:/app
     command: flask run -h 0.0.0.0 -p 9300 --reload
+    # command: gunicorn app:app -b 0.0.0.0:9300 -k gevent --reload
     depends_on:
       - redis
 
