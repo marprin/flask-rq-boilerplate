@@ -29,6 +29,8 @@ REDIS_PORT = os.environ.get("REDIS_PORT", 6379)
 REDIS_DB = os.environ.get("REDIS_DB", 0)
 REDIS_PASSWORD = os.environ.get("REDIS_PASSWORD", None)
 
+NSQD_URL = os.environ.get("NSQD_URL")
+
 LOGGING_CONFIG = {
     "version": 1,
     "disable_existing_loggers": False,
