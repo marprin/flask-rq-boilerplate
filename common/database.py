@@ -1,8 +1,9 @@
+from common.abstract.database import DBConnection
 from mysql.connector import connect
 import settings
 
 
-class DatabaseConnection:
+class DatabaseConnection(DBConnection):
     def __init__(self):
         self._connection = None
         self._cursor = None
