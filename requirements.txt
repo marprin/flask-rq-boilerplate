@@ -7,7 +7,7 @@ gevent==1.4.0
 gnsq==1.0.1
 gunicorn==19.9.0
 hiredis==1.0.1
-ipython==7.8.0
+ipython==7.16.3
 marshmallow==3.2.1
 meinheld==1.0.1
 mysql-connector-python==8.0.18
